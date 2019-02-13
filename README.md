@@ -45,10 +45,9 @@ The app has two View Controller scenes:
 * **Photo Album View:** Allows the users to download and edit an album for a location
 
 <img src="https://user-images.githubusercontent.com/46223108/52563202-c66f1080-2e11-11e9-8feb-3775e3bf4aa7.png" width="300" height="650">
+* When user tapped on the map on any location create pin to this location. the download process of the corresponding photos will be started and run in the application background.
 
-* when user tapped on the map on any location create pin to this location. the download process of the corresponding photos will be started and run in the application background.
 <img src="https://user-images.githubusercontent.com/46223108/52563395-5745ec00-2e12-11e9-9256-cc15b417fad3.png" width="300" height="650">
-
 * When tapping on the Pin Will move to Photo Album. when click on New Collection Button to get new collection photo for this location, also can delete any photo by click on it. 
 
 ## Reference
