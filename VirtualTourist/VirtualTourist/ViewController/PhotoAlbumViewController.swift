@@ -32,6 +32,7 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
         collectionView.dataSource = self
         collectionView.delegate = self
         noImage.isHidden = true
+        centralIndicator.isHidden = false
         showLocationOnMap()
         setFlowLayout()
         fetch()
@@ -71,7 +72,10 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func getImagesFromFlikr(){
-        centralIndicator.startAnimating()
+        self.noImage.isHidden = false
+        self.noImage.text = "fetching photos..."
+        self.centralIndicator.startAnimating()
+
         FlickrClient.sharedInstance().getImageFormFlicker(latitude: pin.latitude, longitude: pin.longitude, { (success, data, error)  in
             guard error == nil else {
                 print(error!)
@@ -90,16 +94,19 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDelegate, UICo
                     self.getImages()
                 } else {
                     DispatchQueue.main.async {
+                        self.centralIndicator.stopAnimating()
                         self.noImage.isHidden = false
                         self.noImage.text = "No Images!"
                         print("no images for this Location")
                     }
                 }
             }
+            DispatchQueue.main.async {
+              self.noImage.isHidden = true
+              self.centralIndicator.stopAnimating()
+              self.centralIndicator.isHidden = true
+            }
         })
-        centralIndicator.stopAnimating()
-        centralIndicator.isHidden = true
-        
     }
     
     func getImages(){
